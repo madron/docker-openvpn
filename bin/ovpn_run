@@ -33,6 +33,11 @@ if [ "$OVPN_DEFROUTE" != "0" ] || [ "$OVPN_NAT" == "1" ] ; then
     done
 fi
 
+# Prerun script
+if [ -x "$OPENVPN/scripts/prerun" ]; then
+    $OPENVPN/scripts/prerun
+fi
+
 conf="$OPENVPN/openvpn.conf"
 
 exec openvpn --config "$conf"
